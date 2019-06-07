@@ -1,0 +1,97 @@
+<!doctype html>
+
+<html lang="de-CH">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>Ässensentscheidigshilf</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Weisch wieder nüm was bstelle? Dänn lahn mich für dich entscheide.">
+	<meta name="keywords" content="entscheidungshilfe, essen, bestellen, schweiz, zufallsgenerator, zufall">
+</head>
+
+<body>
+
+<!--
+
+	Initiative füres schnells web. Kei unnötigi javascripts, stylesheets oder suschtige grümpel.
+	Kontakt: contact [at] oliver [punkt] la
+
+-->
+
+<style>
+	* {
+		user-select: none;
+	}
+	div {
+		font-family: sans-serif;
+		color: #3a3a3a;
+		right: 50%;
+		bottom: 50%;
+		transform: translate(50%, 50%);
+		position: absolute;
+		text-align: center;
+		width: 80vw;
+		max-width: 500px;
+	}
+	span {
+		cursor: pointer;
+		font-size: 6vh;
+	}
+</style>
+
+<div>
+	<span>Häsch Hunger? Typisch. Klick uf mich druf zum luege wasd ässe söttsch.</span><br><br><br>
+	(<a href="/custom.html">Ich wett anderi Möglichkeite</a>)
+</div>
+
+<script>
+	var lischte = [
+		'Italienisch',
+		'Burger',
+		'Pizza',
+		'Indisch',
+		'Thailändisch',
+		'Japanisch',
+		'Chinesisch',
+		'Türkisch',
+		'Schwiizerisch',
+		'Mexikanisch',
+		'Griechisch'
+	];
+
+	if (window.location.hash) {
+		lischte = window.location.hash.replace('#', '').split(',');
+	}
+
+	var nimmvode = function(lischte) {
+		return lischte[Math.floor(Math.random() * lischte.length)];
+	};
+
+	var schpan = document.querySelector('span');
+
+	var klicks = 0;
+
+	schpan.addEventListener('click', (event) => {
+		klicks++;
+		
+		if (klicks == 3) {
+			schpan.textContent = 'Chum, das isch da keis Wunschkonzert. Für dich gits hüt ' + nimmvode(lischte);
+			return;
+		} else if (klicks > 3) {
+			return;
+		}
+
+		for (var i = 0; i < 10; i++) {
+			setTimeout(() => {
+				schpan.textContent = nimmvode(lischte);	
+			}, 50 * i);
+		}
+	}, false);
+</script>
+
+</body>
+
+</html>
