@@ -73,6 +73,7 @@
 	];
 
 	if (window.location.hash) {
+		gtag('event', 'feature', {'name': 'Custom list'});
 		lischte = window.location.hash.replace('#', '').split(',');
 	}
 
@@ -88,6 +89,7 @@
 		klicks++;
 		
 		if (klicks == 3) {
+			gtag('event', 'feature', {'name': 'Maximum retries'});
 			schpan.textContent = 'Chum, das isch da keis Wunschkonzert. Für dich gits hüt ' + nimmvode(lischte);
 			return;
 		} else if (klicks > 3) {
