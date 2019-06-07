@@ -72,18 +72,24 @@
 		'Griechisch'
 	];
 
-	if (window.location.hash) {
-		lischte = window.location.hash.replace('#', '').split(',');
-		gtag('event', 'used_custom_list', {'items': lischte});
-	}
-
 	var nimmvode = function(lischte) {
-		return lischte[Math.floor(Math.random() * lischte.length)];
+		return decodeURIComponent(lischte[Math.floor(Math.random() * lischte.length)]);
 	};
 
 	var schpan = document.querySelector('span');
 
 	var klicks = 0;
+
+	var parseHash = () => {
+		klicks = 0;
+                if (window.location.hash && window.location.hash.length > 1) {
+                        lischte = window.location.hash.replace('#', '').split(',');
+                        gtag('event', 'used_custom_list', {'items': lischte});
+                }
+        };
+
+        parseHash();
+        window.addEventListener("hashchange", parseHash, false);
 
 	schpan.addEventListener('click', (event) => {
 		klicks++;
